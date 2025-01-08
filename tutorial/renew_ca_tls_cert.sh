@@ -20,7 +20,6 @@ while getopts ${OPTSTRING} opt; do
         :)
             echo "Option -${OPTARG} requires an argument."
             usage
-            exit 1
             ;;
         ?)
             echo "Invalid option: -${OPTARG}."
