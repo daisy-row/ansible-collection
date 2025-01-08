@@ -43,7 +43,7 @@ docker run -it --rm -u $(id -u) -v "local fully qualified path to fabproxy remov
 Example:
 
 ```
-docker run -it --rm -u $(id -u) -v ./examples/fabproxy-removal:/playbooks ghcr.io/hyperledger-labs/fabric-ansible:sha-c9330b9 bash
+docker run -it --rm -u $(id -u) -v ./examples/fabproxy-removal:/playbooks ghcr.io/hyperledger-labs/fabric-ansible:sha-c7cd5e4 bash
 ```
 
 At the command prompt, change directory to '/playbooks' and copy the fabproxy removal playbooks.
@@ -218,6 +218,9 @@ After migrating all CA addresses. Before proceeding to the next step. If the cus
 
  ## Step 7: Migrate the orderering node address.
 
+ ***Note:***
+  In the `common-vars.yml`, set the `dry-run` variable to true for the first run. This will ensure all channels are reachable and all actions can be completeted with making changes to the channels.
+
 
   1. The steps migrate renew the Orderer TLS certificate and migrate the Orderer address.
 
@@ -231,12 +234,6 @@ After migrating all CA addresses. Before proceeding to the next step. If the cus
    ansible-playbook 04-migrate-ordering-node-addresses.yml
   ```
  5. Once the aforementioned command has been executed, confirm that the respective Orderer nodes are restarting. If its restarted navigate to the console and click the Orderer node. In the Orderer `info and usage` page the `Operations url` and `API url`  port has been changed into `443`.
-
-
-***Note:***
-
-In the `common-vars.yml`, set the `dry-run` variable to true for the first run. This will ensure all channels are reachable and all actions can be completeted with making changes to the channels.
-!important
 
 ## Step 8: Update anchor peer in the channel.
 
